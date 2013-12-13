@@ -15,31 +15,35 @@ Qchan API manages the 3 types of resources: Job & Build & Subscription.
 Job is minimal managable unit for tasks in Qchan system.
 A Job has the following properties:
 
-* id: the Job ID, unique in the all Jobs in the Qchan system
-* children_ids: an array of the following Job IDs
-* command: the actual shell-script that will be executed by Qchan's worker
-* succeess_count: count of successes
-* failure_count: count of failures
-* name: human-readable name
-* schedule: the scheduling for the job, in ISO8601 format like `R10/2012-10-01T05:52:00Z/PT2S`
- * 1st segment: number of times to repeat the job; put just 'R' to repeat forever
- * 2nd segment: the start time of the job
- * 3rd segment: the run interval
+| name           | type     | description                                                     |
+| ----           | ----     | ----                                                            |
+| id             | integer  | the Job ID, unique in the all Jobs in the Qchan system          |
+| children_ids   | integers | an array of the following Job IDs                               |
+| command        | string   | the actual shell-script that will be executed by Qchan's worker |
+| succeess_count | integer  | count of successes                                              |
+| failure_count  | integer  | count of failures                                               |
+| name           | string   | human-readable name                                             |
+| schedule       | string   | in ISO8601 format like `R10/2012-10-01T05:52:00Z/PT2S`          |
 
 ### Build
 Build is created for each execution of the Job,
 so we might say that there exists a relationship of "A Job has many Builds and a Build belongs to a Job".
 A Build has the following properties:
 
-* id: the Build ID, unique in the all Builds in the Qchan system
-* exit_status: the exit status of the build
-* job_id: related Job's ID
-* number: counting number, auto-incremented from 1 for each build of its job
-* output: stdout + stdout of the build
+| name        | type    | description                                                        |
+| ----        | ----    | ----                                                               |
+| id          | integer | the Build ID, unique in the all Builds in the Qchan system         |
+| exit_status | integer | the exit status of the build                                       |
+| job_id      | integer | related Job's ID                                                   |
+| number      | integer | counting number, auto-incremented from 1 for each build of its job |
+| output      | string  | stdout + stderr of the build                                       |
 
 ### Subscription
-Subscription is a unit of registrations to the Qchan system's pub-sub workers.
+Subscription is a unit of registration to the Qchan system's pub-sub workers.
 A Subscription has the following properties:
 
-* id: the Subscription ID, unique in the all Subscriptions in the Qchan system
-* type: a string property to identifier its event type
+| name    | type    | description                                                              |
+| ----    | ----    | ----                                                                     |
+| id      | integer | the Subscription ID, unique in the all Subscriptions in the Qchan system |
+| type    | string  | a string property to identify its service type                           |
+| payload | string  | free JSON text to store information used by individual event worker      |
