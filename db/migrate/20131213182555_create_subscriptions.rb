@@ -5,7 +5,7 @@ class CreateSubscriptions < ActiveRecord::Migration
       t.string :type
       t.text :payload
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

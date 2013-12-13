@@ -7,7 +7,7 @@ class CreateJobs < ActiveRecord::Migration
       t.integer :failure_count
       t.string :schedule
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

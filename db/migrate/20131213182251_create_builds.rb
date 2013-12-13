@@ -8,7 +8,7 @@ class CreateBuilds < ActiveRecord::Migration
       t.timestamp :started_at
       t.timestamp :finished_at
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

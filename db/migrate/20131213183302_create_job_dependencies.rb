@@ -4,7 +4,7 @@ class CreateJobDependencies < ActiveRecord::Migration
       t.integer :parent_id
       t.integer :child_id
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end
