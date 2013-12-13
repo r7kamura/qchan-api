@@ -47,3 +47,15 @@ A Subscription has the following properties:
 | id      | integer | the Subscription ID, unique in the all Subscriptions in the Qchan system |
 | type    | string  | a string property to identify its service type                           |
 | payload | string  | free JSON text to store information used by individual event worker      |
+
+## Contributing to Qchan API
+```sh
+# setup
+bundle install
+bundle exec rake db:create
+bundle exec rake db:migrate
+bundle exec rake db:migrate RAILS_ENV=test
+
+# run tests
+bundle exec rspec
+```
