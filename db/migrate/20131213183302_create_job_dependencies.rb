@@ -3,8 +3,7 @@ class CreateJobDependencies < ActiveRecord::Migration
     create_table :job_dependencies do |t|
       t.integer :parent_id
       t.integer :child_id
-
-      t.timestamps null: false
+      t.datetime :created_at, null: false
     end
   end
 end
