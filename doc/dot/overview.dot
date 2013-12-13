@@ -1,0 +1,25 @@
+digraph {
+  graph [ ranksep=2.0; ]
+
+  job_worker -> queue [label="push event"];
+  job_worker -> queue [label="fetch job"];
+  job_worker -> queue [label="push log"];
+
+  api_server -> queue [label="push job"; weight=10];
+  api_server -> db [label="query job"];
+
+  scheduler -> api_server [label="trigger job"];
+
+  client -> api_server [label="manage job"; weight=10];
+  client -> stream_server [label="fetch log"];
+
+  stream_server -> queue [label="fetch log"];
+
+  event_worker -> queue [label="fetch event"];
+  event_worker -> api_server [label="post status"];
+  event_worker -> external_services [label="post status"];
+
+  browser -> client;
+
+  { rank = same; api_server; db }
+}
