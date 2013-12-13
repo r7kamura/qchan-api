@@ -48,7 +48,7 @@ A Subscription has the following properties:
 | ----    | ----    | ----                                                                     |
 | id      | integer | the Subscription ID, unique in the all Subscriptions in the Qchan system |
 | job_id  | integer | related Job's ID                                                         |
-| type    | string  | a string property to identify its service type                           |
+| service | string  | a string property to identify its service type                           |
 | payload | string  | free JSON text to store information used by individual event worker      |
 
 ## Contributing to Qchan API
