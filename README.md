@@ -33,10 +33,12 @@ A Build has the following properties:
 | name        | type    | description                                                        |
 | ----        | ----    | ----                                                               |
 | id          | integer | the Build ID, unique in the all Builds in the Qchan system         |
-| exit_status | integer | the exit status of the build                                       |
 | job_id      | integer | related Job's ID                                                   |
+| exit_status | integer | the exit status of the build                                       |
 | number      | integer | counting number, auto-incremented from 1 for each build of its job |
 | output      | string  | stdout + stderr of the build                                       |
+| started_at  | string  | build started time in ISO8601 format                               |
+| finished_at | string  | build finished time in ISO8601 format                              |
 
 ### Subscription
 Subscription is a unit of registration to the Qchan system's pub-sub workers.
@@ -45,6 +47,7 @@ A Subscription has the following properties:
 | name    | type    | description                                                              |
 | ----    | ----    | ----                                                                     |
 | id      | integer | the Subscription ID, unique in the all Subscriptions in the Qchan system |
+| job_id  | integer | related Job's ID                                                         |
 | type    | string  | a string property to identify its service type                           |
 | payload | string  | free JSON text to store information used by individual event worker      |
 
