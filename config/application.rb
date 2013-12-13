@@ -8,5 +8,7 @@ Bundler.require(:default, Rails.env)
 module QchanApi
   class Application < Rails::Application
     config.time_zone = ENV["TIME_ZONE"] if ENV["TIME_ZONE"]
+
+    config.i18n.enforce_available_locales = true
   end
 end
