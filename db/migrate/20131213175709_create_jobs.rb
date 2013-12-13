@@ -1,10 +1,10 @@
 class CreateJobs < ActiveRecord::Migration
   def change
     create_table :jobs do |t|
-      t.string :name
+      t.string :name, null: false
       t.text :command
-      t.integer :success_count
-      t.integer :failure_count
+      t.integer :success_count, null: false, default: 0
+      t.integer :failure_count, null: false, default: 0
       t.string :schedule
 
       t.timestamps null: false
