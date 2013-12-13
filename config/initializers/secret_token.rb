@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-QueuechanApi::Application.config.secret_key_base = 'de395101faa371d5dff476abfa73dc4235ab75c2c2f550a84f50bac7ebc5eea938e04f24b8968bf12fb27085b5d7f2bf9bc2b4c31b58aedb923e73607f7cbd74'
+QchanApi::Application.config.secret_key_base = 'de395101faa371d5dff476abfa73dc4235ab75c2c2f550a84f50bac7ebc5eea938e04f24b8968bf12fb27085b5d7f2bf9bc2b4c31b58aedb923e73607f7cbd74'

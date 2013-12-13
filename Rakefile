@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-QueuechanApi::Application.load_tasks
+QchanApi::Application.load_tasks
