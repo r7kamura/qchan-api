@@ -1,3 +1,3 @@
 class Subscription < ActiveRecord::Base
-  belongs_to :job_id
+  belongs_to :job
 end
