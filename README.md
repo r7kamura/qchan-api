@@ -1,28 +1,9 @@
-== README
+# Queuechan API
+Provides Public API of Queuechan.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Queuechan is a project of a Job-Queue Worker System.
+It consists of a cluster of many processes and Queuechan API is a member of them.
+Queuechan API has a responsibility to provide Public RESTful API
+to Queuechan's internal processes and other external clients via HTTP.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+![](https://a248.e.akamai.net/camo.github.com/607c2ec126e02bdf43dc55436e1e14e780869e69/687474703a2f2f646c2e64726f70626f7875736572636f6e74656e742e636f6d2f2f752f353937383836392f696d6167652f32303133313231315f3034333135372e706e67)
