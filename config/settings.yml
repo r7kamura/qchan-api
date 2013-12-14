@@ -1,0 +1,13 @@
+defaults: &defaults
+  oauth_authorize_path: "https://github.com/login/authorize"
+  oauth_client_id: "test_client_id"
+  oauth_scope: "public"
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

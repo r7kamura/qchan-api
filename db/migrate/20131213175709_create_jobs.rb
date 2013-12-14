@@ -1,6 +1,7 @@
 class CreateJobs < ActiveRecord::Migration
   def change
     create_table :jobs do |t|
+      t.references :user, index: true
       t.string :name, null: false
       t.text :command
       t.integer :builds_count, null: false, default: 0
