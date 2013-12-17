@@ -19,7 +19,16 @@ describe "Authentication resources" do
       it { should == 400 }
     end
 
-    context "with valid condition" do
+    context "with valid condition", :autodoc do
+      let(:description) do
+        <<-EOS
+          Redirects to GitHub's authorization URL following the OAuth 2.0 Authorization Code Grant.
+          We include client_id, scope, redirect_uri, and state as a URI query.
+          The redirect_uri points to /auth/callback and this point will take authorization code to get access token.
+          We also include params[:redirect_to] into the state query to let /auth/callback to redirect there.
+        EOS
+      end
+
       it "redirects to OpenID Provider with query" do
         should == 302
         response.location.should include("https://github.com/login/authorize")
