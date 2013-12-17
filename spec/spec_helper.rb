@@ -5,6 +5,9 @@ require "webmock/rspec"
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
+Autodoc.configuration.path = "doc/api"
+Autodoc.configuration.toc = true
+
 RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
   config.run_all_when_everything_filtered = true

@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
 gem "addressable", "2.3.5"
+gem "autodoc", "0.3.1"
 gem "dotenv-rails", "0.9.0"
 gem "mysql2", "0.3.14"
 gem "omniauth-github", "1.1.1"

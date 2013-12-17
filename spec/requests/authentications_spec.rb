@@ -52,7 +52,7 @@ describe "Authentication resources" do
       it { should == 400 }
     end
 
-    context "with valid condition" do
+    context "with valid condition", :autodoc do
       it "finds or creates User from params[:state], then redirects by JavaScript" do
         should == 200
       end

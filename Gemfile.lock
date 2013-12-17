@@ -28,6 +28,10 @@ GEM
     addressable (2.3.5)
     arel (4.0.1)
     atomic (1.1.14)
+    autodoc (0.3.1)
+      actionpack
+      activesupport (>= 3.0.0)
+      rspec
     builder (3.1.4)
     coderay (1.1.0)
     crack (0.4.1)
@@ -109,6 +113,10 @@ GEM
       vegas (~> 0.1.2)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    rspec (2.14.1)
+      rspec-core (~> 2.14.0)
+      rspec-expectations (~> 2.14.0)
+      rspec-mocks (~> 2.14.0)
     rspec-console (0.2.6)
       rails-env-switcher
     rspec-core (2.14.7)
@@ -163,6 +171,7 @@ PLATFORMS
 
 DEPENDENCIES
   addressable (= 2.3.5)
+  autodoc (= 0.3.1)
   dotenv-rails (= 0.9.0)
   mysql2 (= 0.3.14)
   omniauth-github (= 1.1.1)
