@@ -15,7 +15,12 @@ class AuthenticationsController < ApplicationController
   end
 
   def authorize
-    redirect_to github_authorize_url
+    redirect_to "#{Settings.github_authorize_url}?" + {
+      client_id: Settings.github_client_id,
+      redirect_uri: redirect_uri_for_oauth_provider,
+      scope: Settings.github_scope,
+      state: "#{SecureRandom.urlsafe_base64(16)}:::#{params[:redirect_to]}",
+    }.to_query
   end
 
   def callback
@@ -24,23 +29,6 @@ class AuthenticationsController < ApplicationController
   end
 
   private
-
-  def github_authorize_url
-    "#{Settings.github_authorize_url}?#{oauth_authorize_params.to_query}"
-  end
-
-  def oauth_authorize_params
-    {
-      client_id: Settings.github_client_id,
-      redirect_uri: redirect_uri_for_oauth_provider,
-      scope: Settings.github_scope,
-      state: "#{SecureRandom.urlsafe_base64(16)}:::#{params[:redirect_to]}",
-    }
-  end
-
-  def redirect_url_from_state
-    params[:state].split(":::", 2)[1]
-  end
 
   def get_access_token
     QchanApi::GithubClient::Exchanger.exchange(code: params[:code], redirect_uri: redirect_uri_for_oauth_provider)
