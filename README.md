@@ -19,4 +19,10 @@ bundle exec rake db:migrate RAILS_ENV=test
 
 # run tests
 bundle exec rspec
+
+# generate API documentation
+AUTODOC=1 bundle exec rspec
+
+# generate SVG files from doc/dot/*.dot
+bundl exec rake doc:dot
 ```
