@@ -1,4 +1,3 @@
-require "addressable/uri"
 require "securerandom"
 
 class AuthenticationsController < ApplicationController
@@ -44,21 +43,7 @@ class AuthenticationsController < ApplicationController
   end
 
   def get_access_token
-    Hash[Addressable::URI.form_unencode(get_access_token_response)]["access_token"]
-  end
-
-  def get_access_token_response
-    RestClient.post(
-      Settings.oauth_exchange_url,
-      client_id: Settings.oauth_client_id,
-      client_secret: Settings.oauth_client_secret,
-      code: params[:code],
-      redirect_uri: redirect_uri_for_oauth_provider,
-    )
-  end
-
-  def get_user_data
-    JSON.parse(RestClient.get(Settings.github_user_url, authorization: "token: #{token}"))
+    QchanApi::GithubClient::Exchanger.exchange(code: params[:code], redirect_uri: redirect_uri_for_oauth_provider)
   end
 
   def redirect_uri_for_oauth_provider
