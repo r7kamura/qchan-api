@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131213183302) do
+ActiveRecord::Schema.define(version: 20131214065625) do
 
   create_table "builds", force: true do |t|
     t.integer  "job_id"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20131213183302) do
   add_index "job_dependencies", ["parent_id", "child_id"], name: "index_job_dependencies_on_parent_id_and_child_id", unique: true, using: :btree
 
   create_table "jobs", force: true do |t|
+    t.integer  "user_id"
     t.string   "name",                      null: false
     t.text     "command"
     t.integer  "builds_count",  default: 0, null: false
@@ -45,6 +46,8 @@ ActiveRecord::Schema.define(version: 20131213183302) do
     t.datetime "updated_at",                null: false
   end
 
+  add_index "jobs", ["user_id"], name: "index_jobs_on_user_id", using: :btree
+
   create_table "subscriptions", force: true do |t|
     t.integer  "job_id"
     t.string   "service",    null: false
@@ -54,5 +57,16 @@ ActiveRecord::Schema.define(version: 20131213183302) do
   end
 
   add_index "subscriptions", ["job_id"], name: "index_subscriptions_on_job_id", using: :btree
+
+  create_table "users", force: true do |t|
+    t.integer  "uid",        null: false
+    t.string   "name",       null: false
+    t.string   "email"
+    t.string   "token",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["uid"], name: "index_users_on_uid", unique: true, using: :btree
 
 end

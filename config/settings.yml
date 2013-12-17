@@ -1,7 +1,10 @@
 defaults: &defaults
-  oauth_authorize_path: "https://github.com/login/authorize"
+  github_user_url: "https://api.github.com/user"
+  oauth_authorize_url: "https://github.com/login/authorize"
+  oauth_exchange_url: "https://github.com/login/oauth/access_token"
   oauth_client_id: "test_client_id"
-  oauth_scope: "public"
+  oauth_client_secret: "test_client_secret"
+  oauth_scope: "public,user"
 
 development:
   <<: *defaults

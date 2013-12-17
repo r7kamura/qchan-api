@@ -28,8 +28,34 @@ describe "Authentication resources" do
   end
 
   describe "GET /auth/callback" do
-    it "takes authorization code from OpenID Provider, then redirects to URL provided by params[:state]" do
-      should == 302
+    before do
+      params[:code] = "test_code"
+      params[:state] = "test_prefix:::http://example.com/callback"
+      stub_request(:post, Settings.oauth_exchange_url).to_return(body: "access_token=#{access_token}")
+      stub_request(:get, Settings.github_user_url).to_return(
+        body: {
+          id: "1",
+          email: "test@example.com",
+          login: "test",
+        }.to_json,
+      )
+    end
+
+    let(:access_token) do
+      "test_access_token"
+    end
+
+    context "without params[:code]" do
+      before do
+        params.delete(:code)
+      end
+      it { should == 400 }
+    end
+
+    context "with valid condition" do
+      it "finds or creates User from params[:state], then redirects by JavaScript" do
+        should == 200
+      end
     end
   end
 end
