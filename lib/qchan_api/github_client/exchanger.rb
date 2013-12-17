@@ -21,13 +21,13 @@ module QchanApi
       end
 
       def url
-        Settings.oauth_exchange_url
+        Settings.github_exchange_url
       end
 
       def params
         {
-          client_id: Settings.oauth_client_id,
-          client_secret: Settings.oauth_client_secret,
+          client_id: Settings.github_client_id,
+          client_secret: Settings.github_client_secret,
           code: @code,
           redirect_uri: @redirect_uri,
         }

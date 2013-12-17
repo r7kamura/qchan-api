@@ -15,7 +15,7 @@ class AuthenticationsController < ApplicationController
   end
 
   def authorize
-    redirect_to oauth_authorize_url
+    redirect_to github_authorize_url
   end
 
   def callback
@@ -25,15 +25,15 @@ class AuthenticationsController < ApplicationController
 
   private
 
-  def oauth_authorize_url
-    "#{Settings.oauth_authorize_url}?#{oauth_authorize_params.to_query}"
+  def github_authorize_url
+    "#{Settings.github_authorize_url}?#{oauth_authorize_params.to_query}"
   end
 
   def oauth_authorize_params
     {
-      client_id: Settings.oauth_client_id,
+      client_id: Settings.github_client_id,
       redirect_uri: redirect_uri_for_oauth_provider,
-      scope: Settings.oauth_scope,
+      scope: Settings.github_scope,
       state: "#{SecureRandom.urlsafe_base64(16)}:::#{params[:redirect_to]}",
     }
   end

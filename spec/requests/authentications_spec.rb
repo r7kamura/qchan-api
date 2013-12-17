@@ -31,7 +31,7 @@ describe "Authentication resources" do
     before do
       params[:code] = "test_code"
       params[:state] = "test_prefix:::http://example.com/callback"
-      stub_request(:post, Settings.oauth_exchange_url).to_return(body: "access_token=#{access_token}")
+      stub_request(:post, Settings.github_exchange_url).to_return(body: "access_token=#{access_token}")
       stub_request(:get, Settings.github_user_url).to_return(
         body: {
           id: "1",
