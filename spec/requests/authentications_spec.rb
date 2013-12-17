@@ -53,9 +53,17 @@ describe "Authentication resources" do
     end
 
     context "with valid condition", :autodoc do
-      it "finds or creates User from params[:state], then redirects by JavaScript" do
-        should == 200
+      let(:description) do
+        <<-EOS
+          This API is a callback point from GitHub's OAuth 2.0 flow of the Authorization Code Grant.
+          We try to exchange params[:code] to GitHub's access token, then finds if corresponding user exists.
+          If not, we create a new user by requesting the user's information using the access token.
+          Finally, we redirect to the URL specified by params[:state].
+          The params[:state] format must be like `<nonce>:::<redirect_uri>`.
+        EOS
       end
+
+      it { should == 200 }
     end
   end
 end

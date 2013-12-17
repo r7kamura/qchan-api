@@ -1,5 +1,10 @@
 ## GET /auth/callback
-Finds or creates user from params[:state], then redirects by javascript.
+This API is a callback point from GitHub's OAuth 2.0 flow of the Authorization Code Grant.
+We try to exchange params[:code] to GitHub's access token, then finds if corresponding user exists.
+If not, we create a new user by requesting the user's information using the access token.
+Finally, we redirect to the URL specified by params[:state].
+The params[:state] format must be like `<nonce>:::<redirect_uri>`.
+
 
 ### Parameters
 * `code` string (required)
@@ -22,8 +27,8 @@ Content-Type: text/html; charset=utf-8
 ETag: "e4cf4e0be1efc071c27f129bc98865b0"
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: 38eaf4f4-106d-4dcd-9a91-36b76fe5bab6
-X-Runtime: 0.067778
+X-Request-Id: cda21584-f9f2-414a-b72d-0846467aac39
+X-Runtime: 0.067348
 X-UA-Compatible: chrome=1
 X-XSS-Protection: 1; mode=block
 
