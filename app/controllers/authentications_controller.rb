@@ -10,10 +10,6 @@ class AuthenticationsController < ApplicationController
     string :state, required: true
   end
 
-  def iframe
-    head 200
-  end
-
   def authorize
     redirect_to "#{Settings.github_authorize_url}?" + {
       client_id: Settings.github_client_id,

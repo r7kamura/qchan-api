@@ -1,12 +1,6 @@
 require "spec_helper"
 
 describe "Authentication resources" do
-  describe "GET /auth/iframe" do
-    it "returns HTML rendering iframe of /auth/message to take window.postMessage" do
-      should == 200
-    end
-  end
-
   describe "GET /auth/authorize" do
     before do
       params[:redirect_to] = "http://example.com/callback"
