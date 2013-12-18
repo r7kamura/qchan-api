@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131214065625) do
+ActiveRecord::Schema.define(version: 20131218121011) do
+
+  create_table "access_tokens", force: true do |t|
+    t.integer  "user_id",       null: false
+    t.string   "token",         null: false
+    t.string   "refresh_token", null: false
+    t.string   "scopes",        null: false
+    t.datetime "expired_at"
+    t.datetime "revoked_at"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "access_tokens", ["refresh_token"], name: "index_access_tokens_on_refresh_token", using: :btree
+  add_index "access_tokens", ["token"], name: "index_access_tokens_on_token", using: :btree
 
   create_table "builds", force: true do |t|
     t.integer  "job_id"

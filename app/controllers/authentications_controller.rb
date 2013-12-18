@@ -25,6 +25,7 @@ class AuthenticationsController < ApplicationController
 
   def callback
     @user = User.find_or_create_by_token!(get_access_token)
+    @access_token = @user.generate_access_token
     @url = params[:state].split(":::", 2)[1]
   end
 
