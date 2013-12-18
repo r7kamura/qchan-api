@@ -1,6 +1,14 @@
 require "spec_helper"
 
 describe "Job resource" do
+  before do
+    env["AUTHORIZATION"] = "Bearer: #{access_token.token}"
+  end
+
+  let(:access_token) do
+    AccessToken.create(user_id: 1)
+  end
+
   let(:id) do
     1
   end

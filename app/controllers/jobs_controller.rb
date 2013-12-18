@@ -1,4 +1,6 @@
 class JobsController < ApplicationController
+  before_action :require_access_token
+
   def index
     head 200
   end
