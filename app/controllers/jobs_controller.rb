@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
   before_action :require_access_token
-  before_action :validate_params, only: :update
+  before_action :validate_params, only: [:create, :update]
 
   def index
     respond_with resource_class.all

@@ -27,6 +27,15 @@ describe "Job resource" do
     end
   end
 
+  shared_examples_for "returns 400 with invalid params" do
+    context "with invalid params" do
+      before do
+        params[:name] = ["invalid params"]
+      end
+      it { should == 400 }
+    end
+  end
+
   describe "GET /jobs" do
     before do
       job
@@ -68,6 +77,8 @@ describe "Job resource" do
       params[:command] = "ls"
     end
 
+    include_examples "returns 400 with invalid params"
+
     context "with valid condition", :autodoc do
       it "creates a new job and returns it" do
         should == 201
@@ -85,6 +96,8 @@ describe "Job resource" do
       params[:name] = "updated"
     end
 
+    include_examples "returns 400 with invalid params"
+
     context "with valid condition", :autodoc do
       it "merges given attributes into the job" do
         should == 204
@@ -92,13 +105,6 @@ describe "Job resource" do
         job.name.should == params[:name]
         job.schedule.should == nil
       end
-    end
-
-    context "with invlaid params" do
-      before do
-        params[:name] = ["invalid params"]
-      end
-      it { should == 400 }
     end
   end
 
