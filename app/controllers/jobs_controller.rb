@@ -3,7 +3,7 @@ class JobsController < ApplicationController
   before_action :validate_params, only: :update
 
   def index
-    respond_with Job.all
+    respond_with resource_class.all
   end
 
   def show
@@ -11,7 +11,7 @@ class JobsController < ApplicationController
   end
 
   def create
-    respond_with Job.create(updatable_attributes.merge(user_id: current_access_token.user_id))
+    respond_with resource_class.create(updatable_attributes.merge(user_id: current_access_token.user_id))
   end
 
   def update
@@ -24,8 +24,12 @@ class JobsController < ApplicationController
 
   private
 
+  def resource_class
+    Job
+  end
+
   def resource
-    Job.find(params[:id])
+    resource_class.find(params[:id])
   end
 
   def updatable_attribute_names
