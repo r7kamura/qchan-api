@@ -11,7 +11,7 @@ describe "Job resource" do
   end
 
   let(:id) do
-    1
+    job.id
   end
 
   let(:job) do
@@ -43,7 +43,20 @@ describe "Job resource" do
   end
 
   describe "GET /jobs/:id" do
-    it { should == 200 }
+    context "with non existent record ID" do
+      let(:id) do
+        0
+      end
+
+      it { should == 404 }
+    end
+
+    context "with valid condition", :autodoc do
+      it "returns the job specified by the ID" do
+        should == 200
+        response.body.should be_json_as(Hash)
+      end
+    end
   end
 
   describe "POST /jobs" do

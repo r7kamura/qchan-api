@@ -6,7 +6,7 @@ class JobsController < ApplicationController
   end
 
   def show
-    head 200
+    respond_with Job.find(params[:id])
   end
 
   def create
