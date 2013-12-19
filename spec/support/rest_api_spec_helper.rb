@@ -19,7 +19,9 @@ module RestApiSpecHelper
     end
 
     subject do
-      send(method, path, params, env)
+      body = params.presence
+      body = params.to_json if body && env["CONTENT_TYPE"].try(:include?, "application/json")
+      send(method, path, body, env)
     end
   end
 end

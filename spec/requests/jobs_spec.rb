@@ -4,6 +4,7 @@ describe "Job resource" do
   before do
     env["ACCEPT"] = nil
     env["AUTHORIZATION"] = "Bearer: #{access_token.token}"
+    env["CONTENT_TYPE"] = "application/json"
   end
 
   let(:access_token) do
