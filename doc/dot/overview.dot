@@ -5,6 +5,7 @@ digraph {
   job_worker -> queue [label="fetch job"];
   job_worker -> queue [label="push log"];
 
+  api_server [style="filled"];
   api_server -> queue [label="push job"; weight=10];
   api_server -> db [label="query job"];
 
