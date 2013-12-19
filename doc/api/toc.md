@@ -5,5 +5,6 @@
 * [jobs.md](jobs.md)
  * [GET /jobs](jobs.md#get-jobs)
  * [GET /jobs/:id](jobs.md#get-jobsid)
+ * [POST /jobs](jobs.md#post-jobs)
  * [PUT /jobs/:id](jobs.md#put-jobsid)
  * [DELETE /jobs/:id](jobs.md#delete-jobsid)

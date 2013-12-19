@@ -63,7 +63,21 @@ describe "Job resource" do
   end
 
   describe "POST /jobs" do
-    it { should == 201 }
+    before do
+      params[:name] = "name"
+      params[:command] = "ls"
+    end
+
+    context "with valid condition", :autodoc do
+      it "creates a new job and returns it" do
+        should == 201
+        response.body.should be_json_as(Hash)
+        job = Job.first
+        job.name.should == params[:name]
+        job.command.should == params[:command]
+        job.user_id.should == access_token.user_id
+      end
+    end
   end
 
   describe "PUT /jobs/:id" do

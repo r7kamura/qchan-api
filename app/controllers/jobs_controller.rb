@@ -11,7 +11,7 @@ class JobsController < ApplicationController
   end
 
   def create
-    head 201
+    respond_with Job.create(updatable_attributes.merge(user_id: current_access_token.user_id))
   end
 
   def update
