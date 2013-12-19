@@ -22,22 +22,23 @@ HTTP/1.1 302
 Cache-Control: no-cache
 Content-Length: 290
 Content-Type: text/html; charset=utf-8
-Location: https://github.com/login/authorize?client_id=test_client_id&redirect_uri=http%3A%2F%2Fwww.example.com%2Fauth%2Fcallback&scope=public%2Cuser&state=0kph4vUTyWnpsDuVeEkvmg%3A%3A%3Ahttp%3A%2F%2Fexample.com%2Fcallback
+Location: https://github.com/login/authorize?client_id=test_client_id&redirect_uri=http%3A%2F%2Fwww.example.com%2Fauth%2Fcallback&scope=public%2Cuser&state=d3nIbrPds7Pbn8c17gX69g%3A%3A%3Ahttp%3A%2F%2Fexample.com%2Fcallback
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: 53a3396a-9331-4709-a718-b159f780b455
-X-Runtime: 0.006786
+X-Request-Id: 85924b56-f4cc-4289-abcb-ba964015ebd1
+X-Runtime: 0.007312
 X-UA-Compatible: chrome=1
 X-XSS-Protection: 1; mode=block
 
-<html><body>You are being <a href="https://github.com/login/authorize?client_id=test_client_id&amp;redirect_uri=http%3A%2F%2Fwww.example.com%2Fauth%2Fcallback&amp;scope=public%2Cuser&amp;state=0kph4vUTyWnpsDuVeEkvmg%3A%3A%3Ahttp%3A%2F%2Fexample.com%2Fcallback">redirected</a>.</body></html>
+<html><body>You are being <a href="https://github.com/login/authorize?client_id=test_client_id&amp;redirect_uri=http%3A%2F%2Fwww.example.com%2Fauth%2Fcallback&amp;scope=public%2Cuser&amp;state=d3nIbrPds7Pbn8c17gX69g%3A%3A%3Ahttp%3A%2F%2Fexample.com%2Fcallback">redirected</a>.</body></html>
 ```
 
 ## GET /auth/callback
 This API is a callback point from GitHub's OAuth 2.0 flow of the Authorization Code Grant.
 We try to exchange params[:code] to GitHub's access token, then finds if corresponding user exists.
 If not, we create a new user by requesting the user's information using the access token.
-Finally, we redirect to the URL specified by params[:state].
+Finally, we send user attributes and a newly-created Qchan's access token
+to the URL specified by params[:state].
 The params[:state] format must be like `<nonce>:::<redirect_uri>`.
 
 
@@ -57,15 +58,15 @@ Host: www.example.com
 ```
 HTTP/1.1 200
 Cache-Control: max-age=0, private, must-revalidate
-Content-Length: 712
+Content-Length: 732
 Content-Type: text/html; charset=utf-8
-ETag: "e4cf4e0be1efc071c27f129bc98865b0"
+ETag: "00745251f4c6682c5d701a056423d979"
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: cc0abc1e-0d9a-4e20-a3fd-b73fefd3e29d
-X-Runtime: 0.071242
+X-Request-Id: 195fb911-4dd6-4b18-b7e2-d10f0e01722a
+X-Runtime: 0.126951
 X-UA-Compatible: chrome=1
 X-XSS-Protection: 1; mode=block
 
-<!DOCTYPE html><html><head><title>Qchan</title><link href="/stylesheets/application.css" media="all" rel="stylesheet" /><script src="/javascripts/application.js"></script></head><body><form accept-charset="UTF-8" action="http://example.com/callback" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div><input id="email" name="email" type="hidden" value="test@example.com" /><input id="name" name="name" type="hidden" value="test" /><input id="token" name="token" type="hidden" value="test_access_token" /><input id="uid" name="uid" type="hidden" value="1" /></form><script type="text/javascript">document.forms[0].submit()</script></body></html>
+<!DOCTYPE html><html><head><title>Qchan</title><link href="/stylesheets/application.css" media="all" rel="stylesheet" /><script src="/javascripts/application.js"></script></head><body><form accept-charset="UTF-8" action="http://example.com/callback" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div><input id="token" name="token" type="hidden" value="#&lt;AccessToken:0x007fdc781db120&gt;" /><input id="email" name="email" type="hidden" value="test@example.com" /><input id="name" name="name" type="hidden" value="test" /><input id="uid" name="uid" type="hidden" value="1" /></form><script type="text/javascript">document.forms[0].submit()</script></body></html>
 ```

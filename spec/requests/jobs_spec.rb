@@ -2,6 +2,7 @@ require "spec_helper"
 
 describe "Job resource" do
   before do
+    env["ACCEPT"] = nil
     env["AUTHORIZATION"] = "Bearer: #{access_token.token}"
   end
 
@@ -13,8 +14,32 @@ describe "Job resource" do
     1
   end
 
+  let(:job) do
+    FactoryGirl.create(:job)
+  end
+
   describe "GET /jobs" do
-    it { should == 200 }
+    before do
+      job
+    end
+
+    it "returns all jobs in the database", :autodoc do
+      should == 200
+      response.body.should be_json_as(
+        [
+          id: job.id,
+          user_id: job.user_id,
+          name: job.name,
+          command: job.command,
+          builds_count: 0,
+          successes_count: 0,
+          failures_count: 0,
+          schedule: nil,
+          created_at: String,
+          updated_at: String,
+        ],
+      )
+    end
   end
 
   describe "GET /jobs/:id" do

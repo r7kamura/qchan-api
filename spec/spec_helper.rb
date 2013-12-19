@@ -16,4 +16,5 @@ RSpec.configure do |config|
   config.filter_run :focus
 
   config.include RestApiSpecHelper, type: :request
+  config.include RSpec::JsonMatcher, type: :request
 end

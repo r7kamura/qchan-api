@@ -49,15 +49,15 @@ ActiveRecord::Schema.define(version: 20131218121011) do
   add_index "job_dependencies", ["parent_id", "child_id"], name: "index_job_dependencies_on_parent_id_and_child_id", unique: true, using: :btree
 
   create_table "jobs", force: true do |t|
-    t.integer  "user_id",                   null: false
-    t.string   "name",                      null: false
-    t.text     "command",                   null: false
-    t.integer  "builds_count",  default: 0, null: false
-    t.integer  "success_count", default: 0, null: false
-    t.integer  "failure_count", default: 0, null: false
+    t.integer  "user_id",                     null: false
+    t.string   "name",                        null: false
+    t.text     "command",                     null: false
+    t.integer  "builds_count",    default: 0, null: false
+    t.integer  "successes_count", default: 0, null: false
+    t.integer  "failures_count",  default: 0, null: false
     t.string   "schedule"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "jobs", ["user_id"], name: "index_jobs_on_user_id", using: :btree

@@ -2,7 +2,7 @@ class JobsController < ApplicationController
   before_action :require_access_token
 
   def index
-    head 200
+    respond_with Job.all
   end
 
   def show

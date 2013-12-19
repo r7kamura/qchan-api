@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  respond_to :json
+
   include QchanApi::Authenticatable
 
   rescue_from WeakParameters::ValidationError do |exception|
