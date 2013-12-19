@@ -1,7 +1,7 @@
 class CreateSubscriptions < ActiveRecord::Migration
   def change
     create_table :subscriptions do |t|
-      t.references :job, index: true
+      t.references :job, index: true, null: false
       t.string :service, null: false
       t.text :payload
 

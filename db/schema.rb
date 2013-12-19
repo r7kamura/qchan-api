@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20131218121011) do
   add_index "access_tokens", ["token"], name: "index_access_tokens_on_token", using: :btree
 
   create_table "builds", force: true do |t|
-    t.integer  "job_id"
+    t.integer  "job_id",      null: false
     t.integer  "exit_status", null: false
     t.integer  "number",      null: false
     t.text     "output"
@@ -41,17 +41,17 @@ ActiveRecord::Schema.define(version: 20131218121011) do
   add_index "builds", ["job_id"], name: "index_builds_on_job_id", using: :btree
 
   create_table "job_dependencies", force: true do |t|
-    t.integer  "parent_id"
-    t.integer  "child_id"
+    t.integer  "parent_id",  null: false
+    t.integer  "child_id",   null: false
     t.datetime "created_at", null: false
   end
 
   add_index "job_dependencies", ["parent_id", "child_id"], name: "index_job_dependencies_on_parent_id_and_child_id", unique: true, using: :btree
 
   create_table "jobs", force: true do |t|
-    t.integer  "user_id"
+    t.integer  "user_id",                   null: false
     t.string   "name",                      null: false
-    t.text     "command"
+    t.text     "command",                   null: false
     t.integer  "builds_count",  default: 0, null: false
     t.integer  "success_count", default: 0, null: false
     t.integer  "failure_count", default: 0, null: false
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20131218121011) do
   add_index "jobs", ["user_id"], name: "index_jobs_on_user_id", using: :btree
 
   create_table "subscriptions", force: true do |t|
-    t.integer  "job_id"
+    t.integer  "job_id",     null: false
     t.string   "service",    null: false
     t.text     "payload"
     t.datetime "created_at", null: false
