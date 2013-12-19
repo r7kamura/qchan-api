@@ -18,6 +18,15 @@ describe "Job resource" do
     FactoryGirl.create(:job)
   end
 
+  shared_examples_for "returns 404 with non existent ID" do
+    context "with non existent record ID" do
+      let(:id) do
+        0
+      end
+      it { should == 404 }
+    end
+  end
+
   describe "GET /jobs" do
     before do
       job
@@ -43,16 +52,10 @@ describe "Job resource" do
   end
 
   describe "GET /jobs/:id" do
-    context "with non existent record ID" do
-      let(:id) do
-        0
-      end
-
-      it { should == 404 }
-    end
+    include_examples "returns 404 with non existent ID"
 
     context "with valid condition", :autodoc do
-      it "returns the job specified by the ID" do
+      it "returns the job specified by :id" do
         should == 200
         response.body.should be_json_as(Hash)
       end
@@ -68,6 +71,13 @@ describe "Job resource" do
   end
 
   describe "DELETE /jobs/:id" do
-    it { should == 204 }
+    include_examples "returns 404 with non existent ID"
+
+    context "with valid condition", :autodoc do
+      it "deletes the job & associated records specified by :id" do
+        should == 204
+        job.class.where(id: id).should_not be_exist
+      end
+    end
   end
 end

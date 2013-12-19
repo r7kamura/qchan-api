@@ -5,3 +5,4 @@
 * [jobs.md](jobs.md)
  * [GET /jobs](jobs.md#get-jobs)
  * [GET /jobs/:id](jobs.md#get-jobsid)
+ * [DELETE /jobs/:id](jobs.md#delete-jobsid)

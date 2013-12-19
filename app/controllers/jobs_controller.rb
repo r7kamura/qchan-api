@@ -6,7 +6,7 @@ class JobsController < ApplicationController
   end
 
   def show
-    respond_with Job.find(params[:id])
+    respond_with resource
   end
 
   def create
@@ -18,6 +18,12 @@ class JobsController < ApplicationController
   end
 
   def destroy
-    head 204
+    respond_with resource.destroy
+  end
+
+  private
+
+  def resource
+    Job.find(params[:id])
   end
 end
