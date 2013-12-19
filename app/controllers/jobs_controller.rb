@@ -1,6 +1,17 @@
 class JobsController < ApplicationController
   before_action :require_access_token
-  before_action :validate_params, only: [:create, :update]
+
+  validates :create do
+    string :command, required: true
+    string :name, required: true
+    string :schedule
+  end
+
+  validates :update do
+    string :command
+    string :name
+    string :schedule
+  end
 
   def index
     respond_with resource_class.all
@@ -32,19 +43,7 @@ class JobsController < ApplicationController
     resource_class.find(params[:id])
   end
 
-  def updatable_attribute_names
-    %i(name command schedule)
-  end
-
   def updatable_attributes
-    params.slice(*updatable_attribute_names)
-  end
-
-  def has_invalid_params?
-    params.values_at(*updatable_attribute_names).any? {|value| !value.class.in?([NilClass, String]) }
-  end
-
-  def validate_params
-    raise QchanApi::Errors::InvalidParamsError if has_invalid_params?
+    params.slice(:command, :name, :schedule)
   end
 end

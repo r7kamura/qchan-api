@@ -79,6 +79,14 @@ describe "Job resource" do
 
     include_examples "returns 400 with invalid params"
 
+    context "without required params" do
+      before do
+        params.delete(:name)
+      end
+
+      it { should == 400 }
+    end
+
     context "with valid condition", :autodoc do
       it "creates a new job and returns it" do
         should == 201
