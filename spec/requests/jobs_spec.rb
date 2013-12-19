@@ -67,7 +67,25 @@ describe "Job resource" do
   end
 
   describe "PUT /jobs/:id" do
-    it { should == 204 }
+    before do
+      params[:name] = "updated"
+    end
+
+    context "with valid condition", :autodoc do
+      it "merges given attributes into the job" do
+        should == 204
+        job.reload
+        job.name.should == params[:name]
+        job.schedule.should == nil
+      end
+    end
+
+    context "with invlaid params" do
+      before do
+        params[:name] = ["invalid params"]
+      end
+      it { should == 400 }
+    end
   end
 
   describe "DELETE /jobs/:id" do

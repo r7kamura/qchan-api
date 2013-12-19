@@ -1,5 +1,6 @@
 class JobsController < ApplicationController
   before_action :require_access_token
+  before_action :validate_params, only: :update
 
   def index
     respond_with Job.all
@@ -14,7 +15,7 @@ class JobsController < ApplicationController
   end
 
   def update
-    head 204
+    respond_with resource.update_attributes(updatable_attributes)
   end
 
   def destroy
@@ -25,5 +26,21 @@ class JobsController < ApplicationController
 
   def resource
     Job.find(params[:id])
+  end
+
+  def updatable_attribute_names
+    %i(name command schedule)
+  end
+
+  def updatable_attributes
+    params.slice(*updatable_attribute_names)
+  end
+
+  def has_invalid_params?
+    params.values_at(*updatable_attribute_names).any? {|value| !value.class.in?([NilClass, String]) }
+  end
+
+  def validate_params
+    raise QchanApi::Errors::InvalidParamsError if has_invalid_params?
   end
 end
