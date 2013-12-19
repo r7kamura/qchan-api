@@ -22,15 +22,15 @@ HTTP/1.1 302
 Cache-Control: no-cache
 Content-Length: 290
 Content-Type: text/html; charset=utf-8
-Location: https://github.com/login/authorize?client_id=test_client_id&redirect_uri=http%3A%2F%2Fwww.example.com%2Fauth%2Fcallback&scope=public%2Cuser&state=DpVG9NHBTGhq9THkhfGTwA%3A%3A%3Ahttp%3A%2F%2Fexample.com%2Fcallback
+Location: https://github.com/login/authorize?client_id=test_client_id&redirect_uri=http%3A%2F%2Fwww.example.com%2Fauth%2Fcallback&scope=public%2Cuser&state=Ew-Zt3nBENt2i2xs5hGiUQ%3A%3A%3Ahttp%3A%2F%2Fexample.com%2Fcallback
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: a918ea5c-09a5-4302-a57e-05a3aea40b21
-X-Runtime: 0.008912
+X-Request-Id: 731d8fa2-c1a5-49ed-b790-5b30018afe0b
+X-Runtime: 0.009127
 X-UA-Compatible: chrome=1
 X-XSS-Protection: 1; mode=block
 
-<html><body>You are being <a href="https://github.com/login/authorize?client_id=test_client_id&amp;redirect_uri=http%3A%2F%2Fwww.example.com%2Fauth%2Fcallback&amp;scope=public%2Cuser&amp;state=DpVG9NHBTGhq9THkhfGTwA%3A%3A%3Ahttp%3A%2F%2Fexample.com%2Fcallback">redirected</a>.</body></html>
+<html><body>You are being <a href="https://github.com/login/authorize?client_id=test_client_id&amp;redirect_uri=http%3A%2F%2Fwww.example.com%2Fauth%2Fcallback&amp;scope=public%2Cuser&amp;state=Ew-Zt3nBENt2i2xs5hGiUQ%3A%3A%3Ahttp%3A%2F%2Fexample.com%2Fcallback">redirected</a>.</body></html>
 ```
 
 ## GET /auth/callback
@@ -60,13 +60,13 @@ HTTP/1.1 200
 Cache-Control: max-age=0, private, must-revalidate
 Content-Length: 732
 Content-Type: text/html; charset=utf-8
-ETag: "52dbd34a4095e8fd537072e1e9a645e5"
+ETag: "4856a6c9b85b84e621c8a37fa147e3dc"
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: b103b0a9-bdb4-4c42-bd56-acc6e7af0759
-X-Runtime: 0.142921
+X-Request-Id: bd3856b6-9bc2-45e7-a3b4-e1455fd5669e
+X-Runtime: 0.121664
 X-UA-Compatible: chrome=1
 X-XSS-Protection: 1; mode=block
 
-<!DOCTYPE html><html><head><title>Qchan</title><link href="/stylesheets/application.css" media="all" rel="stylesheet" /><script src="/javascripts/application.js"></script></head><body><form accept-charset="UTF-8" action="http://example.com/callback" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div><input id="token" name="token" type="hidden" value="#&lt;AccessToken:0x007fb6662616b8&gt;" /><input id="email" name="email" type="hidden" value="test@example.com" /><input id="name" name="name" type="hidden" value="test" /><input id="uid" name="uid" type="hidden" value="1" /></form><script type="text/javascript">document.forms[0].submit()</script></body></html>
+<!DOCTYPE html><html><head><title>Qchan</title><link href="/stylesheets/application.css" media="all" rel="stylesheet" /><script src="/javascripts/application.js"></script></head><body><form accept-charset="UTF-8" action="http://example.com/callback" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div><input id="token" name="token" type="hidden" value="#&lt;AccessToken:0x007fdfb416dca8&gt;" /><input id="email" name="email" type="hidden" value="test@example.com" /><input id="name" name="name" type="hidden" value="test" /><input id="uid" name="uid" type="hidden" value="1" /></form><script type="text/javascript">document.forms[0].submit()</script></body></html>
 ```
