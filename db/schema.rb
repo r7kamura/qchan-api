@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(version: 20131218121011) do
     t.integer  "user_id",                     null: false
     t.string   "name",                        null: false
     t.text     "command",                     null: false
-    t.integer  "builds_count",    default: 0, null: false
     t.integer  "successes_count", default: 0, null: false
     t.integer  "failures_count",  default: 0, null: false
     t.string   "schedule"

@@ -50,7 +50,6 @@ describe "Job resource" do
           user_id: job.user_id,
           name: job.name,
           command: job.command,
-          builds_count: 0,
           successes_count: 0,
           failures_count: 0,
           schedule: nil,
