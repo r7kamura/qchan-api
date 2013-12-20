@@ -2,6 +2,8 @@
 * [authentications.md](authentications.md)
  * [GET /auth/authorize](authentications.md#get-authauthorize)
  * [GET /auth/callback](authentications.md#get-authcallback)
+* [builds.md](builds.md)
+ * [GET /jobs/:job_id/builds](builds.md#get-jobsjob_idbuilds)
 * [jobs.md](jobs.md)
  * [GET /jobs](jobs.md#get-jobs)
  * [GET /jobs/:id](jobs.md#get-jobsid)
