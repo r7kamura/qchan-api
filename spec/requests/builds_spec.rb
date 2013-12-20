@@ -36,6 +36,15 @@ describe "Build resource" do
     end
   end
 
+  shared_examples_for "returns 404 with non existent ID" do
+    context "with non existend ID" do
+      let(:id) do
+        0
+      end
+      it { should == 404 }
+    end
+  end
+
   describe "GET /jobs/:job_id/builds" do
     before do
       build
@@ -64,12 +73,7 @@ describe "Build resource" do
   end
 
   describe "GET /builds/:id" do
-    context "with non existend ID" do
-      let(:id) do
-        0
-      end
-      it { should == 404 }
-    end
+    include_examples "returns 404 with non existent ID"
 
     context "with valid condition", :autodoc do
       it "returns the build" do
@@ -86,6 +90,35 @@ describe "Build resource" do
       it "creates and enqueues a new build" do
         should == 201
         response.body.should be_json_including(job_id: job_id)
+      end
+    end
+  end
+
+  describe "PUT /builds/:id" do
+    before do
+      params[:exit_status] = 0
+      params[:output] = "Hello world"
+      params[:started_at] = Time.new(2000, 1, 1).iso8601
+      params[:finished_at] = Time.new(2000, 1, 2).iso8601
+    end
+
+    include_examples "returns 404 with non existent ID"
+
+    context "with invalid time format" do
+      before do
+        params[:started_at] = Time.new(2000, 1, 1).rfc2822
+      end
+      it { should == 400 }
+    end
+
+    context "with valid condition", :autodoc do
+      it "updates the build" do
+        should == 204
+        build.reload
+        build.exit_status.should == params[:exit_status]
+        build.output.should == params[:output]
+        build.started_at.should == Time.new(2000, 1, 1)
+        build.finished_at.should == Time.new(2000, 1, 2)
       end
     end
   end
