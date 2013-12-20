@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20131218121011) do
 
   create_table "builds", force: true do |t|
     t.integer  "job_id",      null: false
-    t.integer  "exit_status", null: false
+    t.integer  "exit_status"
     t.integer  "number",      null: false
     t.text     "output"
     t.datetime "started_at"
