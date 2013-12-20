@@ -5,6 +5,7 @@
 * [builds.md](builds.md)
  * [GET /jobs/:job_id/builds](builds.md#get-jobsjob_idbuilds)
  * [GET /builds/:id](builds.md#get-buildsid)
+ * [POST /jobs/:job_id/builds](builds.md#post-jobsjob_idbuilds)
 * [jobs.md](jobs.md)
  * [GET /jobs](jobs.md#get-jobs)
  * [GET /jobs/:id](jobs.md#get-jobsid)

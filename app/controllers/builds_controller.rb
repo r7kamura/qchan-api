@@ -1,6 +1,6 @@
 class BuildsController < ApplicationController
   before_action :require_access_token
-  before_action :require_job, only: :index
+  before_action :require_job, only: [:index, :create]
 
   def index
     respond_with scope
@@ -8,6 +8,10 @@ class BuildsController < ApplicationController
 
   def show
     respond_with resource
+  end
+
+  def create
+    respond_with scope.create
   end
 
   private

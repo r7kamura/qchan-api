@@ -27,17 +27,21 @@ describe "Build resource" do
     build.id
   end
 
-  describe "GET /jobs/:job_id/builds" do
-    before do
-      build
-    end
-
+  shared_examples_for "returns 404 with non existent job ID" do
     context "with non existent job ID" do
       let(:job_id) do
         0
       end
       it { should == 404 }
     end
+  end
+
+  describe "GET /jobs/:job_id/builds" do
+    before do
+      build
+    end
+
+    include_examples "returns 404 with non existent job ID"
 
     context "with valid condition" do
       it "returns all builds of the job specified by :job_id", :autodoc do
@@ -71,6 +75,17 @@ describe "Build resource" do
       it "returns the build" do
         should == 200
         response.body.should be_json_including(id: id)
+      end
+    end
+  end
+
+  describe "POST /jobs/:job_id/builds" do
+    include_examples "returns 404 with non existent job ID"
+
+    context "with valid condition", :autodoc do
+      it "creates and enqueues a new build" do
+        should == 201
+        response.body.should be_json_including(job_id: job_id)
       end
     end
   end
