@@ -20,6 +20,7 @@ end
 
 group :test do
   gem "factory_girl_rails", "4.3.0"
+  gem "fakeredis", "0.4.3"
   gem "rspec-console", "0.2.6"
   gem "rspec-rails", "2.14.0"
   gem "webmock", "1.16.1"

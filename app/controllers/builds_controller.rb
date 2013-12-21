@@ -22,7 +22,7 @@ class BuildsController < ApplicationController
   end
 
   def create
-    respond_with scope.create
+    respond_with scope.create_with_enqueue
   end
 
   def update

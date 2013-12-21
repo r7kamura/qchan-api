@@ -3,6 +3,17 @@ class Build < ActiveRecord::Base
 
   before_create :set_number
 
+  def self.perform(command)
+  end
+
+  def self.create_with_enqueue
+    create.tap(&:enqueue)
+  end
+
+  def enqueue
+    Resque.enqueue_to(:builds, "Build", job.command)
+  end
+
   private
 
   def set_number
