@@ -1,4 +1,5 @@
 require "spec_helper"
+require "securerandom"
 
 describe "Authentication resources" do
   describe "GET /auth/authorize" do
@@ -45,7 +46,7 @@ describe "Authentication resources" do
     end
 
     let(:github_access_token) do
-      "github_access_token"
+      SecureRandom.hex(32)
     end
 
     context "without params[:code]" do
@@ -53,6 +54,17 @@ describe "Authentication resources" do
         params.delete(:code)
       end
       it { should == 400 }
+    end
+
+    context "with existent user" do
+      before do
+        FactoryGirl.create(:user, token: github_access_token)
+      end
+
+      it "returns the existent user's informatino" do
+        QchanApi::GithubClient::Diagnoser.should_not_receive(:diagnose)
+        should == 200
+      end
     end
 
     context "with valid condition", :autodoc do
@@ -78,6 +90,7 @@ describe "Authentication resources" do
         access_token.scopes.should == "public"
         access_token.token =~ /\A[0-9a-z]{64}\z/
         access_token.refresh_token =~ /\A[0-9a-z]{64}\z/
+        response.body.should include(access_token.token)
       end
     end
   end

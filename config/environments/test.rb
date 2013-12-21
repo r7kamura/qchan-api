@@ -30,10 +30,4 @@ QchanApi::Application.configure do
   config.active_support.deprecation = :stderr
 end
 
-Pry.config.hooks.add_hook(:when_started, :disable_standard_output) do
-  logger = Logger.new(IO::NULL)
-  Rails.logger = logger
-  ActionController::Base.logger = logger
-  ActiveRecord::Base.logger = logger
-  ActionView::Base.logger = logger
-end
+Pry.config.hooks.add_hook(:when_started, :disable_standard_output) { Rails.logger = ActionController::Base.logger = ActiveRecord::Base.logger = ActionView::Base.logger = Logger.new(IO::NULL) }
