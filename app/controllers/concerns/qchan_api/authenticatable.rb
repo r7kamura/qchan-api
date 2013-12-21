@@ -1,6 +1,6 @@
 module QchanApi
   module Authenticatable
-    extend QchanApi::Memoizable
+    extend Mem
 
     private
 

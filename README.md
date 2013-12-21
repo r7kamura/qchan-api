@@ -18,11 +18,19 @@ bundle exec rake db:migrate
 bundle exec rake db:migrate RAILS_ENV=test
 
 # run tests
-bundle exec rspec
+bundle exec rake
 
-# generate API documentation
-AUTODOC=1 bundle exec rspec
+# run tests with generating API documentation
+bundle exec rake AUTODOC=1
+
+# run tests with generating coverage to coverage/index.html
+bundle exec rake COVERAGE=1
 
 # generate PNG files from doc/dot/*.dot
-bundl exec rake doc:dot
+bundle exec rake doc:dot
+
+# run tests in pry console
+rails c test
+Loading test environment (Rails 4.0.2)
+[1] pry(main)> rspec
 ```
