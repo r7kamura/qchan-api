@@ -90,8 +90,8 @@ describe "Build resource" do
       it "creates a new builds and enqueues it" do
         should == 201
         response.body.should be_json_including(job_id: job_id)
-        Resque.redis.llen("queue:builds").should == 1
-        Resque.redis.lrange("queue:builds", 0, -1)[0].should be_json_as(class: "Build", args: [job.command])
+        Resque.redis.llen("queue:build_jobs").should == 1
+        Resque.redis.lrange("queue:build_jobs", 0, -1)[0].should be_json_as(class: "BuildJob", args: [job.command])
       end
     end
   end

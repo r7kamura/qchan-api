@@ -8,7 +8,7 @@ class Build < ActiveRecord::Base
   end
 
   def enqueue
-    Resque.enqueue_to(:builds, "Build", job.command)
+    Resque.enqueue_to(:build_jobs, "BuildJob", job.command)
   end
 
   private
