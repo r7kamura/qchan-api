@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
 
   include QchanApi::Authenticatable
 
-  rescue_from WeakParameters::ValidationError, QchanApi::Errors::InvalidParamsError do |exception|
-    render status: 400, json: { error: exception.to_s }
+  rescue_from WeakParameters::ValidationError do |exception|
+    render status: 400, json: { error: exception.message }
   end
 
   rescue_from ActiveRecord::RecordNotFound do
