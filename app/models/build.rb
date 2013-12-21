@@ -8,10 +8,18 @@ class Build < ActiveRecord::Base
   end
 
   def enqueue
-    Resque.enqueue_to(:build_jobs, "BuildJob", job.command)
+    Resque.enqueue_to(job_queue_name, job_class_name, attributes)
   end
 
   private
+
+  def job_queue_name
+    "builds"
+  end
+
+  def job_class_name
+    "QchanWorker::BuildJob"
+  end
 
   def set_number
     self.number = (job.builds.last.try(:number) || 0) + 1
