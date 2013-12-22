@@ -18,7 +18,7 @@ class Build < ActiveRecord::Base
   end
 
   def job_class_name
-    "QchanWorker::BuildJob"
+    "QchanWorker::Builder"
   end
 
   def set_number
