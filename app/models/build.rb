@@ -8,16 +8,16 @@ class Build < ActiveRecord::Base
   end
 
   def enqueue
-    Resque.enqueue_to(job_queue_name, job_class_name, attributes)
+    Resque.enqueue_to(queue_name, enqueued_class_name, attributes)
   end
 
   private
 
-  def job_queue_name
+  def queue_name
     "builds"
   end
 
-  def job_class_name
+  def enqueued_class_name
     "QchanWorker::Builder"
   end
 

@@ -91,7 +91,7 @@ describe "Build resource" do
         should == 201
         response.body.should be_json_including(job_id: job_id)
         Resque.redis.llen("queue:builds").should == 1
-        Resque.redis.lrange("queue:builds", 0, -1)[0].should be_json_as(class: "QchanWorker::BuildJob", args: [Hash])
+        Resque.redis.lrange("queue:builds", 0, -1)[0].should be_json_as(class: "QchanWorker::Builder", args: [Hash])
       end
     end
   end
