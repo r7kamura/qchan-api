@@ -1,9 +1,9 @@
 digraph {
   graph [ ranksep=2.0; ]
 
-  job_worker -> queue [label="push event"];
-  job_worker -> queue [label="fetch job"];
-  job_worker -> queue [label="push log"];
+  worker -> queue [label="enqueue & dequeue"];
+  worker -> api_server [label="post status"];
+  worker -> external_services [label="post status"];
 
   api_server [style="filled"];
   api_server -> queue [label="push job"; weight=10];
@@ -15,10 +15,6 @@ digraph {
   client -> stream_server [label="fetch log"];
 
   stream_server -> queue [label="fetch log"];
-
-  event_worker -> queue [label="fetch event"];
-  event_worker -> api_server [label="post status"];
-  event_worker -> external_services [label="post status"];
 
   browser -> client;
 
