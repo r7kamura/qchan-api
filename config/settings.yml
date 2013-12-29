@@ -3,8 +3,10 @@ defaults: &defaults
   github_authorize_url: "https://github.com/login/authorize"
   github_exchange_url: "https://github.com/login/oauth/access_token"
   github_scope: "public,user"
-  redis_host: "localhost"
-  redis_port: 6379
+  github_client_id: <%= ENV["GITHUB_CLIENT_ID"] %>
+  github_client_secret: <%= ENV["GITHUB_CLIENT_SECRET"] %>
+  redis_host: <%= ENV["REDIS_HOST"] || "localhost" %>
+  redis_port: <%= ENV["REDIS_PORT"] || "6379" %>
 
 development:
   <<: *defaults
