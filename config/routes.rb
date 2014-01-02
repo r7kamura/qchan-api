@@ -9,5 +9,6 @@ QchanApi::Application.routes.draw do
     get :iframe
     get :authorize
     get :callback
+    post :exchange
   end
 end
