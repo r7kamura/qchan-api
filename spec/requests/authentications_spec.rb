@@ -61,7 +61,7 @@ describe "Authentication resources" do
         FactoryGirl.create(:user, token: github_access_token)
       end
 
-      it "returns the existent user's informatino" do
+      it "returns the existent user's information" do
         QchanApi::GithubClient::Diagnoser.should_not_receive(:diagnose)
         should == 200
       end
