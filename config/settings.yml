@@ -1,6 +1,6 @@
 defaults: &defaults
   github_user_url: "https://api.github.com/user"
-  github_authorize_url: "https://github.com/login/authorize"
+  github_authorize_url: "https://github.com/login/oauth/authorize"
   github_exchange_url: "https://github.com/login/oauth/access_token"
   github_scope: "public,user"
   github_client_id: <%= ENV["GITHUB_CLIENT_ID"] %>
