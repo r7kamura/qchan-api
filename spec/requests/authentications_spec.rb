@@ -100,11 +100,23 @@ describe "Authentication resources" do
       params[:access_token] = github_access_token
       stub_request(:get, Settings.github_user_url).to_return(
         body: {
-          id: "1",
-          email: "test@example.com",
-          login: "test",
+          id: uid,
+          email: email,
+          login: name,
         }.to_json,
       )
+    end
+
+    let(:uid) do
+      1
+    end
+
+    let(:email) do
+      "test@example.com"
+    end
+
+    let(:name) do
+      "test"
     end
 
     let(:github_access_token) do
@@ -121,7 +133,12 @@ describe "Authentication resources" do
     context "with valid condition", :autodoc do
       specify "Given GitHub access token, then returns Qchan API's access token" do
         should == 201
-        response.body.should be_json_as(access_token: /\A[0-9a-f]{64}\z/)
+        response.body.should be_json_as(
+          token: /\A[0-9a-f]{64}\z/,
+          uid: uid,
+          email: email,
+          name: name,
+        )
       end
     end
   end

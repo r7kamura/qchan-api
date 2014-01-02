@@ -31,8 +31,12 @@ class AuthenticationsController < ApplicationController
 
   def exchange
     user = User.find_or_create_by_token!(params[:access_token])
-    access_token = user.generate_access_token
-    render status: 201, json: { access_token: access_token.token }
+    render status: 201, json: {
+      token: user.generate_access_token.token,
+      email: user.email,
+      name: user.name,
+      uid: user.uid,
+    }
   end
 
   private
