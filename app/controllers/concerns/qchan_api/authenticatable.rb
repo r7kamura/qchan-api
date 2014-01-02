@@ -11,7 +11,7 @@ module QchanApi
     end
 
     def current_access_token
-      if token = request.authorization.try(:[], /\ABearer: ([0-9a-z]{64})\z/, 1)
+      if token = request.authorization.try(:[], /\ABearer ([0-9a-z]{64})\z/, 1)
         AccessToken.find_by(token: token)
       end
     end

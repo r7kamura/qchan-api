@@ -24,7 +24,7 @@ module QchanApi
       end
 
       def params
-        { authorization: "token: #@token" }
+        { Authorization: "token #@token" }
       end
     end
   end

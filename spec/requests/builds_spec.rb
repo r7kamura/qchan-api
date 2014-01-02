@@ -3,7 +3,7 @@ require "spec_helper"
 describe "Build resource" do
   before do
     env["ACCEPT"] = nil
-    env["AUTHORIZATION"] = "Bearer: #{access_token.token}"
+    env["AUTHORIZATION"] = "Bearer #{access_token.token}"
     env["CONTENT_TYPE"] = "application/json"
   end
 
