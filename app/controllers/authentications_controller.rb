@@ -24,18 +24,20 @@ class AuthenticationsController < ApplicationController
   end
 
   def callback
-    @user = User.find_or_create_by_token!(get_access_token)
-    @access_token = @user.generate_access_token
-    @url = params[:state].split(":::", 2)[1]
+    user = User.find_or_create_by_token!(get_access_token)
+    redirect_to "#{params[:state].split(":::", 2)[1]}#" + {
+      access_token: user.generate_access_token.token,
+      email: user.email,
+      name: user.name,
+    }.to_query
   end
 
   def exchange
     user = User.find_or_create_by_token!(params[:access_token])
     render status: 201, json: {
-      token: user.generate_access_token.token,
+      access_token: user.generate_access_token.token,
       email: user.email,
       name: user.name,
-      uid: user.uid,
     }
   end
 

@@ -9,7 +9,6 @@ class User < ActiveRecord::Base
       create!(
         email: table["email"],
         name: table["login"],
-        uid: table["id"],
         token: token,
       )
     end

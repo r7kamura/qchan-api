@@ -72,7 +72,6 @@ ActiveRecord::Schema.define(version: 20131218121011) do
   add_index "subscriptions", ["job_id"], name: "index_subscriptions_on_job_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.integer  "uid",        null: false
     t.string   "name",       null: false
     t.string   "email"
     t.string   "token",      null: false

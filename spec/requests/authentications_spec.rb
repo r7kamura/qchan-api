@@ -26,7 +26,7 @@ describe "Authentication resources" do
 
       it "redirects to OpenID Provider with query" do
         should == 302
-        response.location.should include("https://github.com/login/authorize")
+        response.location.should include("https://github.com/login/oauth/authorize")
       end
     end
   end
@@ -35,7 +35,11 @@ describe "Authentication resources" do
     before do
       params[:code] = "test_code"
       params[:state] = "test_prefix:::http://example.com/callback"
-      stub_request(:post, Settings.github_exchange_url).to_return(body: "access_token=#{github_access_token}")
+      stub_request(:post, Settings.github_exchange_url).to_return(
+        body: {
+          access_token: github_access_token,
+        }.to_json,
+      )
       stub_request(:get, Settings.github_user_url).to_return(
         body: {
           id: "1",
@@ -63,7 +67,7 @@ describe "Authentication resources" do
 
       it "returns the existent user's information" do
         QchanApi::GithubClient::Diagnoser.should_not_receive(:diagnose)
-        should == 200
+        should == 302
       end
     end
 
@@ -73,16 +77,15 @@ describe "Authentication resources" do
           This API is a callback point from GitHub's OAuth 2.0 flow of the Authorization Code Grant.
           We try to exchange params[:code] to GitHub's access token, then finds if corresponding user exists.
           If not, we create a new user by requesting the user's information using the access token.
-          Finally, we send user attributes and a newly-created Qchan's access token
+          Finally, we redirects with user attributes and a newly-created Qchan's access token
           to the URL specified by params[:state].
           The params[:state] format must be like `<nonce>:::<redirect_uri>`
         EOS
       end
 
       it do
-        should == 200
+        should == 302
         user = User.first
-        user.uid.should == 1
         user.name.should == "test"
         user.email.should == "test@example.com"
         user.token.should == github_access_token
@@ -90,7 +93,7 @@ describe "Authentication resources" do
         access_token.scopes.should == "public"
         access_token.token =~ /\A[0-9a-z]{64}\z/
         access_token.refresh_token =~ /\A[0-9a-z]{64}\z/
-        response.body.should include(access_token.token)
+        response.location.should include(access_token.token)
       end
     end
   end
@@ -100,15 +103,10 @@ describe "Authentication resources" do
       params[:access_token] = github_access_token
       stub_request(:get, Settings.github_user_url).to_return(
         body: {
-          id: uid,
           email: email,
           login: name,
         }.to_json,
       )
-    end
-
-    let(:uid) do
-      1
     end
 
     let(:email) do
@@ -134,8 +132,7 @@ describe "Authentication resources" do
       specify "Given GitHub access token, then returns Qchan API's access token" do
         should == 201
         response.body.should be_json_as(
-          token: /\A[0-9a-f]{64}\z/,
-          uid: uid,
+          access_token: /\A[0-9a-f]{64}\z/,
           email: email,
           name: name,
         )
