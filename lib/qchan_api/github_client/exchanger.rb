@@ -1,3 +1,5 @@
+require "json"
+
 module QchanApi
   module GithubClient
     class Exchanger
@@ -11,13 +13,13 @@ module QchanApi
       end
 
       def exchange
-        Response.new(post).access_token
+        JSON.parse(post)["access_token"]
       end
 
       private
 
       def post
-        RestClient.post(url, params)
+        RestClient.post(url, params, header)
       end
 
       def url
@@ -33,18 +35,8 @@ module QchanApi
         }
       end
 
-      class Response
-        def initialize(raw)
-          @raw = raw
-        end
-
-        def access_token
-          decode["access_token"]
-        end
-
-        def decode
-          Hash[Addressable::URI.form_unencode(@raw)]
-        end
+      def header
+        { "Accept" => "application/json" }
       end
     end
   end

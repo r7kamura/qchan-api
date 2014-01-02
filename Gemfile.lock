@@ -175,7 +175,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  addressable (= 2.3.5)
   autodoc (= 0.3.2)
   dotenv-rails (= 0.9.0)
   factory_girl_rails (= 4.3.0)

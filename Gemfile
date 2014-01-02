@@ -1,6 +1,5 @@
 source "https://rubygems.org"
 
-gem "addressable", "2.3.5"
 gem "autodoc", "0.3.2"
 gem "dotenv-rails", "0.9.0"
 gem "mem", "0.0.2"
