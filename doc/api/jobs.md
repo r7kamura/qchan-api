@@ -5,7 +5,7 @@ Returns all jobs in the database.
 ```
 GET /jobs HTTP/1.1
 Accept: */*
-Authorization: Bearer: cb42879e507e4097bd7223a211fbb5375c578170a3849d3c55f02c8e2afe692a
+Authorization: Bearer: 237dba80447f13ba981fe743a4763665257e5215ad683d97a2d1e2ad252f8337
 Content-Length: 0
 Content-Type: application/json
 Host: www.example.com
@@ -14,28 +14,27 @@ Host: www.example.com
 ```
 HTTP/1.1 200
 Cache-Control: max-age=0, private, must-revalidate
-Content-Length: 212
+Content-Length: 194
 Content-Type: application/json; charset=utf-8
-ETag: "f5f237a1c95c2aa98068897c499c6220"
+ETag: "81b982ae229a67f8378ef7a786eb2a4c"
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: b80a9778-d98e-452f-b2db-af20ecde02b9
-X-Runtime: 0.015251
+X-Request-Id: 1376db5e-ed3d-48d2-add9-0780f132c97e
+X-Runtime: 0.044880
 X-UA-Compatible: chrome=1
 X-XSS-Protection: 1; mode=block
 
 [
   {
-    "id": 268,
-    "user_id": 7,
-    "name": "name7",
-    "command": "command7",
-    "builds_count": 0,
+    "id": 73,
+    "user_id": 8,
+    "name": "name8",
+    "command": "command8",
     "successes_count": 0,
     "failures_count": 0,
     "schedule": null,
-    "created_at": "2013-12-20T14:49:06.000Z",
-    "updated_at": "2013-12-20T14:49:06.000Z"
+    "created_at": "2014-01-02T08:33:55.000Z",
+    "updated_at": "2014-01-02T08:33:55.000Z"
   }
 ]
 ```
@@ -45,9 +44,9 @@ Returns the job specified by :id.
 
 ### Example
 ```
-GET /jobs/269 HTTP/1.1
+GET /jobs/74 HTTP/1.1
 Accept: */*
-Authorization: Bearer: 31ef1606b447722a6ad1960bc9e9f7eda680b2295231301595c24c2f55f8f4d5
+Authorization: Bearer: dfba3d7085e7a7fa210fd20cfa2bf394f2d89f4fd7377e76e7035f0354bb494f
 Content-Length: 0
 Content-Type: application/json
 Host: www.example.com
@@ -56,27 +55,26 @@ Host: www.example.com
 ```
 HTTP/1.1 200
 Cache-Control: max-age=0, private, must-revalidate
-Content-Length: 210
+Content-Length: 192
 Content-Type: application/json; charset=utf-8
-ETag: "6c47004bc4d3896e27c9c727b9045af1"
+ETag: "99243b38a271ec924812acd1990873c8"
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: 02002a6b-763f-4c43-88ee-6bfa379e4e2d
-X-Runtime: 0.008722
+X-Request-Id: 0a0bbd5d-e7eb-40da-bf8d-b886f22926d9
+X-Runtime: 0.006402
 X-UA-Compatible: chrome=1
 X-XSS-Protection: 1; mode=block
 
 {
-  "id": 269,
-  "user_id": 8,
-  "name": "name8",
-  "command": "command8",
-  "builds_count": 0,
+  "id": 74,
+  "user_id": 9,
+  "name": "name9",
+  "command": "command9",
   "successes_count": 0,
   "failures_count": 0,
   "schedule": null,
-  "created_at": "2013-12-20T14:49:06.000Z",
-  "updated_at": "2013-12-20T14:49:06.000Z"
+  "created_at": "2014-01-02T08:33:56.000Z",
+  "updated_at": "2014-01-02T08:33:56.000Z"
 }
 ```
 
@@ -92,7 +90,7 @@ Creates a new job and returns it.
 ```
 POST /jobs HTTP/1.1
 Accept: */*
-Authorization: Bearer: add5aadcca9464cb7200fd126a8ddbd5977f9500b00f5e15d0b3ee2af2d3e056
+Authorization: Bearer: 48e6357943ab1306dd534ceb8f48c364251195fe817ce3503a103e891583b420
 Content-Length: 30
 Content-Type: application/json
 Host: www.example.com
@@ -106,28 +104,27 @@ Host: www.example.com
 ```
 HTTP/1.1 201
 Cache-Control: max-age=0, private, must-revalidate
-Content-Length: 203
+Content-Length: 185
 Content-Type: application/json; charset=utf-8
-ETag: "303cc68c55fbe8369e7e310d7ec1a095"
-Location: http://www.example.com/jobs/270
+ETag: "c391437a6e1afa2ad58511a15b77b76d"
+Location: http://www.example.com/jobs/75
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: 43a5213a-ed54-4612-a519-5ac964b50aa4
-X-Runtime: 0.012803
+X-Request-Id: 8f300e0b-a840-4385-84ed-85ad5128137c
+X-Runtime: 0.009831
 X-UA-Compatible: chrome=1
 X-XSS-Protection: 1; mode=block
 
 {
-  "id": 270,
+  "id": 75,
   "user_id": 1,
   "name": "name",
   "command": "ls",
-  "builds_count": 0,
   "successes_count": 0,
   "failures_count": 0,
   "schedule": null,
-  "created_at": "2013-12-20T14:49:06.648Z",
-  "updated_at": "2013-12-20T14:49:06.648Z"
+  "created_at": "2014-01-02T08:33:56.084Z",
+  "updated_at": "2014-01-02T08:33:56.084Z"
 }
 ```
 
@@ -141,9 +138,9 @@ Merges given attributes into the job.
 
 ### Example
 ```
-PUT /jobs/272 HTTP/1.1
+PUT /jobs/77 HTTP/1.1
 Accept: */*
-Authorization: Bearer: 175fee7c78eb816e0f379ac8c818466ca517572c208c1e943ee4c3abbee445d3
+Authorization: Bearer: 6c444fbdde4a51a0c8611ff4cfa115913d215b0822b28b334c731ba89d876799
 Content-Length: 18
 Content-Type: application/json
 Host: www.example.com
@@ -158,8 +155,8 @@ HTTP/1.1 204
 Cache-Control: no-cache
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: cfe2a2ba-fdf1-42d2-8536-318ddcb4fac9
-X-Runtime: 0.011969
+X-Request-Id: 71ef4735-9f6e-44ae-8693-66e156718d36
+X-Runtime: 0.010213
 X-UA-Compatible: chrome=1
 X-XSS-Protection: 1; mode=block
 ```
@@ -169,9 +166,9 @@ Deletes the job & associated records specified by :id.
 
 ### Example
 ```
-DELETE /jobs/273 HTTP/1.1
+DELETE /jobs/78 HTTP/1.1
 Accept: */*
-Authorization: Bearer: 95f5afc32a2ac79fb983b98537d876ce2397aff81861b7a76747788127512456
+Authorization: Bearer: 79367b14bb5e45309d36e72be62b903021e5b5b9ce6bfd0dd3abf325f0c106a8
 Content-Length: 0
 Content-Type: application/json
 Host: www.example.com
@@ -182,8 +179,8 @@ HTTP/1.1 204
 Cache-Control: no-cache
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: 076b68f4-7c3a-4f40-bedb-4d6834b45d26
-X-Runtime: 0.055982
+X-Request-Id: 59d468f5-ce74-42cf-8556-d193fb5aebd6
+X-Runtime: 0.042475
 X-UA-Compatible: chrome=1
 X-XSS-Protection: 1; mode=block
 ```

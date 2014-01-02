@@ -20,7 +20,7 @@ describe "Authentication resources" do
           Redirects to GitHub's authorization URL following the OAuth 2.0 Authorization Code Grant.
           We include client_id, scope, redirect_uri, and state as a URI query.
           The redirect_uri points to /auth/callback and this point will take authorization code to get access token.
-          We also include params[:redirect_to] into the state query to let /auth/callback to redirect there.
+          We also include params[:redirect_to] into the state query to let /auth/callback to redirect there
         EOS
       end
 
@@ -75,7 +75,7 @@ describe "Authentication resources" do
           If not, we create a new user by requesting the user's information using the access token.
           Finally, we send user attributes and a newly-created Qchan's access token
           to the URL specified by params[:state].
-          The params[:state] format must be like `<nonce>:::<redirect_uri>`.
+          The params[:state] format must be like `<nonce>:::<redirect_uri>`
         EOS
       end
 
@@ -118,8 +118,8 @@ describe "Authentication resources" do
       it { should == 400 }
     end
 
-    context "with valid condition" do
-      specify "Given GitHub access token, then returns Qchan API's access token." do
+    context "with valid condition", :autodoc do
+      specify "Given GitHub access token, then returns Qchan API's access token" do
         should == 201
         response.body.should be_json_as(access_token: /\A[0-9a-f]{64}\z/)
       end

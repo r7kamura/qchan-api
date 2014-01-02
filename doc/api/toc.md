@@ -2,6 +2,7 @@
 * [authentications.md](authentications.md)
  * [GET /auth/authorize](authentications.md#get-authauthorize)
  * [GET /auth/callback](authentications.md#get-authcallback)
+ * [POST /auth/exchange](authentications.md#post-authexchange)
 * [builds.md](builds.md)
  * [GET /jobs/:job_id/builds](builds.md#get-jobsjob_idbuilds)
  * [GET /builds/:id](builds.md#get-buildsid)
