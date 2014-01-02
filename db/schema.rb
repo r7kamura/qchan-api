@@ -80,6 +80,6 @@ ActiveRecord::Schema.define(version: 20131218121011) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["uid"], name: "index_users_on_uid", unique: true, using: :btree
+  add_index "users", ["token"], name: "index_users_on_token", unique: true, using: :btree
 
 end
