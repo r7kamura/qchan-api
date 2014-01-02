@@ -22,15 +22,15 @@ HTTP/1.1 302
 Cache-Control: no-cache
 Content-Length: 290
 Content-Type: text/html; charset=utf-8
-Location: https://github.com/login/authorize?client_id=test_client_id&redirect_uri=http%3A%2F%2Fwww.example.com%2Fauth%2Fcallback&scope=public%2Cuser&state=fS2gn-W0aTDVsEPfbcCZuQ%3A%3A%3Ahttp%3A%2F%2Fexample.com%2Fcallback
+Location: https://github.com/login/authorize?client_id=test_client_id&redirect_uri=http%3A%2F%2Fwww.example.com%2Fauth%2Fcallback&scope=public%2Cuser&state=Wf89GhKEc14F_jNGOM57qw%3A%3A%3Ahttp%3A%2F%2Fexample.com%2Fcallback
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: 8461923a-7bfc-44ca-8396-6604d49e3f54
-X-Runtime: 0.006934
+X-Request-Id: 7754804a-1c9f-4e9b-97c8-2d455ddc043b
+X-Runtime: 0.007147
 X-UA-Compatible: chrome=1
 X-XSS-Protection: 1; mode=block
 
-<html><body>You are being <a href="https://github.com/login/authorize?client_id=test_client_id&amp;redirect_uri=http%3A%2F%2Fwww.example.com%2Fauth%2Fcallback&amp;scope=public%2Cuser&amp;state=fS2gn-W0aTDVsEPfbcCZuQ%3A%3A%3Ahttp%3A%2F%2Fexample.com%2Fcallback">redirected</a>.</body></html>
+<html><body>You are being <a href="https://github.com/login/authorize?client_id=test_client_id&amp;redirect_uri=http%3A%2F%2Fwww.example.com%2Fauth%2Fcallback&amp;scope=public%2Cuser&amp;state=Wf89GhKEc14F_jNGOM57qw%3A%3A%3Ahttp%3A%2F%2Fexample.com%2Fcallback">redirected</a>.</body></html>
 ```
 
 ## GET /auth/callback
@@ -60,15 +60,15 @@ HTTP/1.1 200
 Cache-Control: max-age=0, private, must-revalidate
 Content-Length: 635
 Content-Type: text/html; charset=utf-8
-ETag: "3eaff2ed07f7d10173453bbc48173676"
+ETag: "127560fbbfb4c1fdf1e6ccd68970941e"
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: 85128e62-4b03-460a-85b3-611898f9c20f
-X-Runtime: 0.020994
+X-Request-Id: ecc5f49e-13a0-412b-9f0c-acebad785a8c
+X-Runtime: 0.019317
 X-UA-Compatible: chrome=1
 X-XSS-Protection: 1; mode=block
 
-<!DOCTYPE html><html><head><title>Qchan</title></head><body><form accept-charset="UTF-8" action="http://example.com/callback" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div><input id="token" name="token" type="hidden" value="f405353ada9a3d112b4dba302456778ffc7da3aa64ac12a2960a228ff0cd1da4" /><input id="email" name="email" type="hidden" value="test@example.com" /><input id="name" name="name" type="hidden" value="test" /><input id="uid" name="uid" type="hidden" value="1" /></form><script type="text/javascript">document.forms[0].submit()</script></body></html>
+<!DOCTYPE html><html><head><title>Qchan</title></head><body><form accept-charset="UTF-8" action="http://example.com/callback" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div><input id="token" name="token" type="hidden" value="4ce594aa9ad9ad23dc9afd1bfc849cce20a66ffdec91ee66941e7d14f089b217" /><input id="email" name="email" type="hidden" value="test@example.com" /><input id="name" name="name" type="hidden" value="test" /><input id="uid" name="uid" type="hidden" value="1" /></form><script type="text/javascript">document.forms[0].submit()</script></body></html>
 ```
 
 ## POST /auth/exchange
@@ -85,7 +85,7 @@ Content-Length: 77
 Content-Type: application/x-www-form-urlencoded
 Host: www.example.com
 
-access_token=81bae4603f95a46326ac18cb7ffddbda1cc92374f8a7213aab59592d1a9e9e50
+access_token=41b8db0bd3c4fd29e52fb1776db344443d26c4099fbb8c63f243c383c8edcbe8
 ```
 
 ```
@@ -93,16 +93,16 @@ HTTP/1.1 201
 Cache-Control: max-age=0, private, must-revalidate
 Content-Length: 125
 Content-Type: application/json; charset=utf-8
-ETag: "da6e78d53900b0a68a2cf0a0228657e6"
+ETag: "2fa6f951e949b705e1160eebfb384fed"
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: 15840ebc-0d78-432a-a58d-385017df23e5
-X-Runtime: 0.012709
+X-Request-Id: 8e560123-e391-4bc1-a140-349f7ab67a84
+X-Runtime: 0.015516
 X-UA-Compatible: chrome=1
 X-XSS-Protection: 1; mode=block
 
 {
-  "token": "c16fffe3947cc1473bea90d752c4793a03736a0eafda5436eb40249e4f0b8a18",
+  "token": "f5371330945510f175c230fdbfa7386683ce3e3b48edc4887b18d3b7502faebb",
   "email": "test@example.com",
   "name": "test",
   "uid": 1
