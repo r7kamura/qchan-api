@@ -87,11 +87,19 @@ describe "Build resource" do
     include_examples "returns 404 with non existent job ID"
 
     context "with valid condition", :autodoc do
-      it "creates a new builds and enqueues it" do
+      it "creates a new builds and enqueues it with its id & related job's command" do
         should == 201
         response.body.should be_json_including(job_id: job_id)
         Resque.redis.llen("queue:builds").should == 1
-        Resque.redis.lrange("queue:builds", 0, -1)[0].should be_json_as(class: "QchanWorker::Builder", args: [Hash])
+        Resque.redis.lrange("queue:builds", 0, -1)[0].should be_json_including(
+          class: "QchanWorker::Builder",
+          args: [
+            {
+              id: Integer,
+              command: job.command,
+            },
+          ],
+        )
       end
     end
   end
