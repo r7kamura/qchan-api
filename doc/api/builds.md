@@ -3,9 +3,50 @@ Returns all builds of the job specified by :job_id.
 
 ### Example
 ```
-GET /jobs/67/builds HTTP/1.1
+GET /jobs/210/builds HTTP/1.1
 Accept: */*
-Authorization: Bearer: f3b013feef236b7f612b3850dc1f365575a5b6fb4cd969305b6ea55af3de6a58
+Authorization: Bearer: 4d10d61b42f6650bad49cbb37b61ecc12563220385c56769b94c06fe64bd6868
+Content-Length: 0
+Content-Type: application/json
+Host: www.example.com
+```
+
+```
+HTTP/1.1 200
+Cache-Control: max-age=0, private, must-revalidate
+Content-Length: 183
+Content-Type: application/json; charset=utf-8
+ETag: "7c182d520cb715446233eae05b909105"
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-Request-Id: e11448c9-e332-456c-a8b8-05d0ba74358d
+X-Runtime: 0.014246
+X-UA-Compatible: chrome=1
+X-XSS-Protection: 1; mode=block
+
+[
+  {
+    "id": 114,
+    "job_id": 210,
+    "exit_status": 0,
+    "number": 1,
+    "output": null,
+    "started_at": null,
+    "finished_at": null,
+    "created_at": "2014-01-02T08:40:24.000Z",
+    "updated_at": "2014-01-02T08:40:24.000Z"
+  }
+]
+```
+
+## GET /builds/:id
+Returns the build.
+
+### Example
+```
+GET /builds/115 HTTP/1.1
+Accept: */*
+Authorization: Bearer: f52d600383d7c757a690d19607539ded73fa12bfb539ac727f1cc89d8c14a3af
 Content-Length: 0
 Content-Type: application/json
 Host: www.example.com
@@ -16,65 +57,24 @@ HTTP/1.1 200
 Cache-Control: max-age=0, private, must-revalidate
 Content-Length: 181
 Content-Type: application/json; charset=utf-8
-ETag: "bd148af25901237b825a4b4166963114"
+ETag: "9d787d5d4a11b65799b486413e963b2a"
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: 1f974116-1367-4872-8ba4-219b78b06930
-X-Runtime: 0.014532
-X-UA-Compatible: chrome=1
-X-XSS-Protection: 1; mode=block
-
-[
-  {
-    "id": 37,
-    "job_id": 67,
-    "exit_status": 0,
-    "number": 1,
-    "output": null,
-    "started_at": null,
-    "finished_at": null,
-    "created_at": "2014-01-02T08:33:55.000Z",
-    "updated_at": "2014-01-02T08:33:55.000Z"
-  }
-]
-```
-
-## GET /builds/:id
-Returns the build.
-
-### Example
-```
-GET /builds/38 HTTP/1.1
-Accept: */*
-Authorization: Bearer: 5cfdc6de7c5777c7ff52951e7a3230e27cbe0adf614525a5fa976bec9add184f
-Content-Length: 0
-Content-Type: application/json
-Host: www.example.com
-```
-
-```
-HTTP/1.1 200
-Cache-Control: max-age=0, private, must-revalidate
-Content-Length: 179
-Content-Type: application/json; charset=utf-8
-ETag: "18fbca80b29fe860b1b0f4d7dd98d797"
-X-Content-Type-Options: nosniff
-X-Frame-Options: SAMEORIGIN
-X-Request-Id: fe7853fc-402f-42cf-8807-42317ea744f0
-X-Runtime: 0.007758
+X-Request-Id: 07f9cbd2-31a1-4506-a806-2bc7fdfc18e4
+X-Runtime: 0.006703
 X-UA-Compatible: chrome=1
 X-XSS-Protection: 1; mode=block
 
 {
-  "id": 38,
-  "job_id": 68,
+  "id": 115,
+  "job_id": 211,
   "exit_status": 0,
   "number": 1,
   "output": null,
   "started_at": null,
   "finished_at": null,
-  "created_at": "2014-01-02T08:33:55.000Z",
-  "updated_at": "2014-01-02T08:33:55.000Z"
+  "created_at": "2014-01-02T08:40:24.000Z",
+  "updated_at": "2014-01-02T08:40:24.000Z"
 }
 ```
 
@@ -83,9 +83,9 @@ Creates a new builds and enqueues it.
 
 ### Example
 ```
-POST /jobs/69/builds HTTP/1.1
+POST /jobs/212/builds HTTP/1.1
 Accept: */*
-Authorization: Bearer: a8d5afcbfeed55032810cb8d1a10e09103823756472cdea2e9bc89be09b82490
+Authorization: Bearer: 3d7149815da899db2e2020c919805e1da6af21560b2d1af38c0591443851f9a8
 Content-Length: 0
 Content-Type: application/json
 Host: www.example.com
@@ -94,27 +94,27 @@ Host: www.example.com
 ```
 HTTP/1.1 201
 Cache-Control: max-age=0, private, must-revalidate
-Content-Length: 182
+Content-Length: 184
 Content-Type: application/json; charset=utf-8
-ETag: "54f752d6da6f02bc70dfb987f35cd084"
-Location: http://www.example.com/builds/40
+ETag: "82950cb0a9e80c7071a528484285c545"
+Location: http://www.example.com/builds/117
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: ce06794b-3149-4431-91d9-09545178b8e1
-X-Runtime: 0.019979
+X-Request-Id: 975ee6c0-961f-4751-b2be-1ab3ea8bdd9c
+X-Runtime: 0.016742
 X-UA-Compatible: chrome=1
 X-XSS-Protection: 1; mode=block
 
 {
-  "id": 40,
-  "job_id": 69,
+  "id": 117,
+  "job_id": 212,
   "exit_status": null,
   "number": 2,
   "output": null,
   "started_at": null,
   "finished_at": null,
-  "created_at": "2014-01-02T08:33:55.860Z",
-  "updated_at": "2014-01-02T08:33:55.860Z"
+  "created_at": "2014-01-02T08:40:24.952Z",
+  "updated_at": "2014-01-02T08:40:24.952Z"
 }
 ```
 
@@ -129,9 +129,9 @@ Updates the build.
 
 ### Example
 ```
-PUT /builds/42 HTTP/1.1
+PUT /builds/119 HTTP/1.1
 Accept: */*
-Authorization: Bearer: a91dac8619eae20d87ad6ebb7d725dffc72114b2817d0b552c80fb50f51f7c12
+Authorization: Bearer: 5c7900c91014fb3da90421a8559fe2bda5797741fc37faead54469ca0796f270
 Content-Length: 123
 Content-Type: application/json
 Host: www.example.com
@@ -149,8 +149,8 @@ HTTP/1.1 204
 Cache-Control: no-cache
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN
-X-Request-Id: 696adfb3-afc7-4b61-98cd-f09babfd56fb
-X-Runtime: 0.015212
+X-Request-Id: 78e62429-d8c2-4d87-802b-6470ddc9a21c
+X-Runtime: 0.012653
 X-UA-Compatible: chrome=1
 X-XSS-Protection: 1; mode=block
 ```
