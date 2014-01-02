@@ -13,6 +13,7 @@ gem "rest-client", "1.6.7"
 gem "rspec-json_matcher", "0.1.2"
 gem "settingslogic", "2.0.9"
 gem "slim", "2.0.2"
+gem "thin", "1.6.1"
 gem "weak_parameters", "0.1.2"
 
 group :development, :test do
