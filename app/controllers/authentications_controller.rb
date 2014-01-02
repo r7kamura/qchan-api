@@ -10,6 +10,10 @@ class AuthenticationsController < ApplicationController
     string :state, required: true
   end
 
+  validates :exchange do
+    string :access_token, required: true
+  end
+
   def authorize
     redirect_to "#{Settings.github_authorize_url}?" + {
       client_id: Settings.github_client_id,
@@ -23,6 +27,12 @@ class AuthenticationsController < ApplicationController
     @user = User.find_or_create_by_token!(get_access_token)
     @access_token = @user.generate_access_token
     @url = params[:state].split(":::", 2)[1]
+  end
+
+  def exchange
+    user = User.find_or_create_by_token!(params[:access_token])
+    access_token = user.generate_access_token
+    render status: 201, json: { access_token: access_token.token }
   end
 
   private
