@@ -75,6 +75,7 @@ GEM
     rack (1.5.2)
     rack-accept-default (0.0.2)
       rack
+    rack-cors (0.2.9)
     rack-protection (1.5.1)
       rack
     rack-test (0.6.2)
@@ -183,6 +184,7 @@ DEPENDENCIES
   mysql2 (= 0.3.14)
   pry-rails (= 0.3.2)
   rack-accept-default (= 0.0.2)
+  rack-cors (= 0.2.9)
   rails (= 4.0.2)
   resque (= 1.25.1)
   rest-client (= 1.6.7)

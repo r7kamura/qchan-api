@@ -12,5 +12,18 @@ module QchanApi
     config.i18n.enforce_available_locales = true
     config.middleware.use Rack::AcceptDefault
     config.time_zone = ENV["TIME_ZONE"] if ENV["TIME_ZONE"]
+
+    config.middleware.use Rack::Cors do
+      allow do
+        origins "*"
+        resource(
+          "*",
+          credentials: true,
+          headers: :any,
+          max_age: 86400,
+          methods: [:get, :post, :put, :delete, :options],
+        )
+      end
+    end
   end
 end
